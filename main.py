@@ -1,8 +1,6 @@
 from __future__ import division
 from nltk.corpus import gutenberg
 
-# print(gutenberg.fileids())
-
 macbeth = gutenberg.words('shakespeare-macbeth.txt')
 
 blake_poems = gutenberg.words('blake-poems.txt')
@@ -18,10 +16,11 @@ def most_diverse(texts):
     for text in texts:
         diversity = lexical_diversity(text)
 
-        if (diversity > max_diversity):
+        if diversity > max_diversity:
             most_diverse_text = text
 
     return most_diverse_text
 
 
 print(most_diverse([macbeth, blake_poems]))
+
