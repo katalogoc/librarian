@@ -10,4 +10,3 @@ cfd = ConditionalFreqDist(
 )
 
 cfd.plot(cumulative=True)
-
