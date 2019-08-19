@@ -4,9 +4,9 @@ The smartest guy
 
 ## Prerequisites
 
-- **python3** [install instructions](https://www.python.org/downloads/)
-- **virtualenv** [install instructions](https://virtualenv.pypa.io/en/latest/installation/****)
-- **direnv** [install instructions](https://direnv.net/) (optional)
+- python3 [install instructions](https://www.python.org/downloads/)
+- virtualenv [install instructions](https://virtualenv.pypa.io/en/latest/installation/****)
+- direnv [install instructions](https://direnv.net/) (optional)
 
 ## Setup
 
