@@ -1,13 +1,11 @@
-from nltk import ConditionalFreqDist
-from nltk.corpus import udhr
+from nltk import corpus, ConditionalFreqDist
+from src.take import take
 
-languages = ['English', 'German_Deutsch', 'Greenlandic_Inuktikut']
 
 cfd = ConditionalFreqDist(
-    (lang, len(word))
-    for lang in languages
-    for word in udhr.words(lang + '-Latin1')
+    (genre, word)
+    for genre in take(corpus.brown.categories(), 5)
+    for word in corpus.brown.words(categories='news')
 )
 
-cfd.plot(cumulative=True)
-
+cfd.plot()
