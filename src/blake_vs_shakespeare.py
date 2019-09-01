@@ -1,6 +1,6 @@
 from __future__ import division
 from nltk.corpus import gutenberg
-from most_diverse_text import most_diverse
+from text_processing import most_diverse
 
 macbeth = gutenberg.words('shakespeare-macbeth.txt')
 
