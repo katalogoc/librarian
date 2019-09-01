@@ -1,6 +1,6 @@
 from __future__ import division
 from nltk import ConditionalFreqDist
-from nltk.corpus import brown
+from nltk.corpus import brown, words, stopwords
 
 def most_close_to_style(style):
     cfd = ConditionalFreqDist(
@@ -40,3 +40,21 @@ def plural(word):
         return word[:-2] + 'en'
     else:
         return word + 's'
+
+def get_vocabulary(text):
+    return set(w.lower() for w in text if w.isalpha())
+
+def unusual_words(text):
+    vocabulary = get_vocabulary(text)
+    english_vocabulary = get_vocabulary(words.words())
+    print(len(english_vocabulary))
+    print(len(vocabulary))
+    unusual = vocabulary.difference(english_vocabulary)
+    return sorted(unusual)
+
+def content_fraction(text):
+    sw = stopwords.words('english')
+    content = [w for w in text if w.lower() not in sw]
+
+    return len(content) / len(text)
+
