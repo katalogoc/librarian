@@ -8,10 +8,10 @@ def most_close_to_style(style):
         for genre in ['news', 'romance']
         for word in brown.words(categories=genre)
     )
-    def check_words(words):
+    def check_words(text):
         max_frequency = 0
         most_romantic_word = None
-        for word in words:
+        for word in text:
             frequency = cfd[style][word]
             if max_frequency < frequency:
                 max_frequency = frequency
@@ -57,4 +57,5 @@ def content_fraction(text):
     content = [w for w in text if w.lower() not in sw]
 
     return len(content) / len(text)
+
 
