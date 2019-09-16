@@ -15,3 +15,9 @@ The smartest guy
 - ```virtualenv --python=$(which python3) venv```
 - ```source venv/bin/activate```
 - ```python download.py``` (In an interactive prompt you will have to enter *d* (Download) and in the next prompt you will have to enter *all*)
+
+## Usage
+Run tests:
+```bash
+python -m unittest discover -s tests -p "*_test.py"
+```

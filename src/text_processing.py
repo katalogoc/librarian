@@ -1,4 +1,5 @@
 from __future__ import division
+import re
 from nltk import ConditionalFreqDist
 from nltk.corpus import brown, words, stopwords
 
@@ -57,5 +58,8 @@ def content_fraction(text):
     content = [w for w in text if w.lower() not in sw]
 
     return len(content) / len(text)
+
+def strip_determiners(string):
+    return re.sub(r'^(a|an|the)\W|\W(a|an|the)\W', ' ', string, flags=re.IGNORECASE).strip()
 
 
