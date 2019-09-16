@@ -1,10 +1,12 @@
 from __future__ import division
 import re
-from nltk import ConditionalFreqDist
+import urllib
+import nltk
 from nltk.corpus import brown, words, stopwords
+from bs4 import BeautifulSoup
 
 def most_close_to_style(style):
-    cfd = ConditionalFreqDist(
+    cfd = nltk.ConditionalFreqDist(
         (genre, word)
         for genre in ['news', 'romance']
         for word in brown.words(categories=genre)
@@ -62,4 +64,16 @@ def content_fraction(text):
 def strip_determiners(string):
     return re.sub(r'^(a|an|the)\W|\W(a|an|the)\W', ' ', string, flags=re.IGNORECASE).strip()
 
+def find_arithmetic_expressions(string):
+    return re.findall(r'(\d+\s*(?:[+\-*/\=]\s*\d+)+)', string)
+  
+def get_raw_text_by_url(url):
+    html = urllib.request.urlopen(url).read()
+    soup = BeautifulSoup(html, 'lxml')
+    return soup.get_text()
 
+def tokenize_money_dates_names_and_organizations(string):
+    return nltk.regexp_tokenize(string, r'''(?x)    # set flag to allow verbose regexps
+        \$\d+(?:\.|,\d+)?                             # handles monetary amounts
+        |\d+(?:\.|,\d+)?%
+    ''', gaps=False)

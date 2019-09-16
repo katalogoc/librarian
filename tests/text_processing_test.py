@@ -20,6 +20,37 @@ class TestStripDeterminers(unittest.TestCase):
                 'elephant and beaver are greatest animals'
             )
 
+class TestFindArithmeticExpressions(unittest.TestCase):
+    def test_finds_simple_arithmetic_expression(self):
+        self.assertEqual(
+            proc.find_arithmetic_expressions('Teacher writes 2+2=4'),
+            ['2+2=4']
+        )
+
+    def test_finds_all_arithmetic_expressions(self):
+        self.assertEqual(
+            proc.find_arithmetic_expressions('There were written 20+20=40, 40-40=0 and 30=30'),
+            ['20+20=40', '40-40=0', '30=30']
+        )
+
+    def test_finds_arithmetic_expressions_when_whitespace_presents(self):
+        self.assertEqual(
+            proc.find_arithmetic_expressions('10 + 20=  30; 0/ 100=0'),
+            ['10 + 20=  30', '0/ 100=0']
+        )
+
+class TestTokenize(unittest.TestCase):
+    def test_tokenizes_money(self):
+        self.assertEqual(
+            proc.tokenize_money_dates_names_and_organizations('Banana costs $1'),
+            ['$1']
+        )
+
+    def test_tokenizes_percentage_values(self):
+        self.assertEqual(
+            proc.tokenize_money_dates_names_and_organizations('Credit\'s annual percentage is 1%'),
+            ['1%']
+        )
 
 if __name__ == '__main__':
     unittest.main()
