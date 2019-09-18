@@ -66,7 +66,7 @@ def strip_determiners(string):
 
 def find_arithmetic_expressions(string):
     return re.findall(r'(\d+\s*(?:[+\-*/\=]\s*\d+)+)', string)
-  
+
 def get_raw_text_by_url(url):
     html = urllib.request.urlopen(url).read()
     soup = BeautifulSoup(html, 'lxml')
@@ -78,3 +78,18 @@ def tokenize_money_dates_names_and_organizations(string):
         | \d+(?:\.|,\d+)?%                            # handles percentage values
         | [A-Z][a-z]+                                 # handles names and organizations
     ''', gaps=False)
+
+def hAck3r(string):
+    dictionary = {
+        'e': '3',
+        'i': '1',
+        'o': '0',
+        'l': '|',
+        's': '5',
+        '.': '5w33t!',
+        'ate': '8'
+    }
+    for key, value in dictionary.items():
+        reg = re.compile(re.escape(key), re.IGNORECASE)
+        string = reg.sub(value, string)
+    return string
