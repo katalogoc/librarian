@@ -73,7 +73,8 @@ def get_raw_text_by_url(url):
     return soup.get_text()
 
 def tokenize_money_dates_names_and_organizations(string):
-    return nltk.regexp_tokenize(string, r'''(?x)    # set flag to allow verbose regexps
+    return nltk.regexp_tokenize(string, r'''(?x)      # set flag to allow verbose regexps
         \$\d+(?:\.|,\d+)?                             # handles monetary amounts
-        |\d+(?:\.|,\d+)?%
+        | \d+(?:\.|,\d+)?%                            # handles percentage values
+        | [A-Z][a-z]+                                 # handles names and organizations
     ''', gaps=False)

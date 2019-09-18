@@ -52,6 +52,12 @@ class TestTokenize(unittest.TestCase):
             ['1%']
         )
 
+    def test_tokenizes_names(self):
+        self.assertEqual(
+            proc.tokenize_money_dates_names_and_organizations('John loves Katty'),
+            ['John', 'Katty']
+        )
+
 if __name__ == '__main__':
     unittest.main()
     
