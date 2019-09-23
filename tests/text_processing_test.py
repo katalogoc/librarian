@@ -61,7 +61,7 @@ class TestFindArithmeticExpressions(unittest.TestCase):
 class TestTokenize(unittest.TestCase):
     def test_tokenizes_money(self):
         self.assertEqual(
-            proc.tokenize_money_dates_names_and_organizations(' $1,;; '),
+            proc.tokenize_money_dates_names_and_organizations('yet another $1'),
             ['$1']
         )
 
@@ -77,6 +77,12 @@ class TestTokenize(unittest.TestCase):
             ['John', 'Katty']
         )
 
+class hAck3r(unittest.TestCase):
+    def test_converts_to_hAck3r_string(self):
+        self.assertEqual(
+            proc.hAck3r('We elders, who in the storms of the age have ripened into men.'),
+            'W3 3|d3r5, wh0 1n th3 5t0rm5 0f th3 ag3 hav3 r1p3n3d 1nt0 m3n5w33t!'
+        )
+
 if __name__ == '__main__':
     unittest.main()
-    
