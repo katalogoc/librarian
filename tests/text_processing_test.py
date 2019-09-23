@@ -1,6 +1,25 @@
 import unittest
 import src.text_processing as proc
 
+class TestContentFraction(unittest.TestCase):
+    def test_calculates_content_fraction(self):
+        self.assertEqual(
+            proc.content_fraction(['an', 'a', 'the']),
+            0
+        )
+        self.assertEqual(
+            proc.content_fraction(['You', 'are', 'lovin\'', 'it']),
+            0.25
+        )
+        self.assertEqual(
+            proc.content_fraction(['Gold', 'Silver', 'Coffee', 'it']),
+            0.75
+        )
+        self.assertEqual(
+            proc.content_fraction(['Desk']),
+            1
+        )
+
 class TestStripDeterminers(unittest.TestCase):
     def test_strips_determiners_when_determiner_is_a_part_of_the_word(self):
             self.assertEqual(
@@ -42,14 +61,14 @@ class TestFindArithmeticExpressions(unittest.TestCase):
 class TestTokenize(unittest.TestCase):
     def test_tokenizes_money(self):
         self.assertEqual(
-            proc.tokenize_money_dates_names_and_organizations('Banana costs $1'),
+            proc.tokenize_money_dates_names_and_organizations(' $1,;; '),
             ['$1']
         )
 
     def test_tokenizes_percentage_values(self):
         self.assertEqual(
-            proc.tokenize_money_dates_names_and_organizations('Credit\'s annual percentage is 1%'),
-            ['1%']
+            proc.tokenize_money_dates_names_and_organizations('1% and 2%'),
+            ['1%', '2%']
         )
 
     def test_tokenizes_names(self):

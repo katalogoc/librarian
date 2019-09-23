@@ -50,8 +50,6 @@ def get_vocabulary(text):
 def unusual_words(text):
     vocabulary = get_vocabulary(text)
     english_vocabulary = get_vocabulary(words.words())
-    print(len(english_vocabulary))
-    print(len(vocabulary))
     unusual = vocabulary.difference(english_vocabulary)
     return sorted(unusual)
 
@@ -66,11 +64,16 @@ def strip_determiners(string):
 
 def find_arithmetic_expressions(string):
     return re.findall(r'(\d+\s*(?:[+\-*/\=]\s*\d+)+)', string)
-  
+
 def get_raw_text_by_url(url):
     html = urllib.request.urlopen(url).read()
     soup = BeautifulSoup(html, 'lxml')
     return soup.get_text()
+
+def unknown(url):
+    html = urllib.request.urlopen(url).read()
+    lowercased = nltk.regexp_tokenize(str(html), r'[a-z]+')
+    return unusual_words(lowercased)
 
 def tokenize_money_dates_names_and_organizations(string):
     return nltk.regexp_tokenize(string, r'''(?x)      # set flag to allow verbose regexps
